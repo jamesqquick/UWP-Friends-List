@@ -1,0 +1,38 @@
+﻿<Page
+    x:Class="Friends_List.UserList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Friends_List"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <RelativePanel Background="#2c3e50">
+        <TextBlock x:Name="TitleText" Text="Add Friend" RelativePanel.AlignHorizontalCenterWithPanel="True"
+                   FontSize="34" Margin="10,10,10,30" Foreground="#c0392b"  />
+        <AutoSuggestBox x:Name="SearchBox" RelativePanel.Below="TitleText" Margin="10" Width="250"
+                 RelativePanel.AlignHorizontalCenterWithPanel="True" QueryIcon="Find"
+                        QuerySubmitted="SearchBox_QuerySubmitted" TextChanged="SearchBox_TextChanged"/>
+        
+        <ListView x:Name="UsersListView" RelativePanel.Below="SearchBox" Margin="10"
+                  RelativePanel.AlignHorizontalCenterWithPanel="True" SelectionChanged="UsersListView_SelectionChanged"  >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock FontSize="24" Text="{Binding Username}" Grid.Column="0" Foreground="White" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <!--<ListView.Items>
+                <x:String>James</x:String>
+            </ListView.Items> -->
+        </ListView>
+    </RelativePanel>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Add" x:Name="AddButton" Click="AddButton_Click" IsEnabled="False"/>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Logout" x:Name ="LogoutButton" Click="LogoutButton_Click"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>
